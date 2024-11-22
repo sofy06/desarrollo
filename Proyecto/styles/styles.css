@@ -1,0 +1,47 @@
+#gameCanvas {
+    width: 800px;
+    height: 600px;
+    position: relative;
+    border: 2px solid black;
+    margin: auto;
+    background-color: #f4f4f4;
+}
+
+.bin {
+    width: 100px;
+    height: 150px;
+    position: absolute;
+}
+
+#organic {
+    top: 0;
+    left: 0;
+}
+
+#inorganic {
+    top: 0;
+    right: 0;
+}
+
+#recyclable {
+    bottom: 0;
+    left: 0;
+}
+
+#non-recyclable {
+    bottom: 0;
+    right: 0;
+}
+
+#trashItems {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.trash {
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+}

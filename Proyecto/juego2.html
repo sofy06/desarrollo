@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="cssprueba.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alimenta a la Foca</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffffa9;
+            color: #333;
+        }
+        header {
+            background-color: #1fa515c3;
+            padding: 10px 0;
+            text-align: center;
+            color: #fff;
+        }
+
+        nav {
+                background-color: #267705;
+                color: #fff;
+                padding: 10px;
+                text-align: center;
+            }
+            nav a {
+                color: #fff;
+                text-decoration: none;
+                padding: 0 10px;
+            }
+            nav a:hover {
+                text-decoration: underline;
+            }
+
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+        #gameCanvas {
+            width: 800px;
+            height: 600px;
+            position: relative;
+            border: 2px solid black;
+            margin: auto;
+            background-color: #79e0fc;
+        }
+        .bin {
+            width: 100px;
+            height: 150px;
+            position: absolute;
+        }
+        #foca {
+            width: 150px;
+            position: relative;
+            margin: auto;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        #consejo {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #fff7d4;
+            border: 1px solid #ddd;
+            width: 60%;
+            margin: 20px auto;
+            font-style: italic;
+            font-size: 1.1em;
+            color: #267705;
+        }
+        .trash {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Alimenta a la Foca</h1>
+        <p>¡Da comida correcta para obtener un consejo!</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Página principal</a>
+        <a href="juego.html">Ayuda a la foca</a>
+        <a href=""></a>
+        <a href=""></a>
+    </nav>
+
+    <div id="gameCanvas">
+        <div id="foca" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <img src="images/foca.png" alt="Foca">
+        </div>
+
+        <!-- Comida aleatoria -->
+        <div id="trashItems">
+            <img id="food1" src="images/pez.png" class="trash" draggable="true" ondragstart="drag(event)" data-type="comida" alt="Comida para Foca">
+            <img id="food2" src="images/bolsa.jpg" class="trash" draggable="true" ondragstart="drag(event)" data-type="no-comida" alt="Basura">
+            <img id="food1" src="images/pez.png" class="trash" draggable="true" ondragstart="drag(event)" data-type="comida" alt="Comida para Foca">
+            <img id="food2" src="images/bolsa.jpg" class="trash" draggable="true" ondragstart="drag(event)" data-type="no-comida" alt="Basura">
+            <img id="food1" src="images/pez.png" class="trash" draggable="true" ondragstart="drag(event)" data-type="comida" alt="Comida para Foca">
+            <img id="food2" src="images/bolsa.jpg" class="trash" draggable="true" ondragstart="drag(event)" data-type="no-comida" alt="Basura">
+            <img id="food1" src="images/pez.png" class="trash" draggable="true" ondragstart="drag(event)" data-type="comida" alt="Comida para Foca">
+            <img id="food2" src="images/bolsa.jpg" class="trash" draggable="true" ondragstart="drag(event)" data-type="no-comida" alt="Basura">
+            <img id="food1" src="images/pez.png" class="trash" draggable="true" ondragstart="drag(event)" data-type="comida" alt="Comida para Foca">
+            <img id="food2" src="images/bolsa.jpg" class="trash" draggable="true" ondragstart="drag(event)" data-type="no-comida" alt="Basura">
+            <img id="food1" src="images/pez.png" class="trash" draggable="true" ondragstart="drag(event)" data-type="comida" alt="Comida para Foca">
+            <img id="food1" src="images/pez.png" class="trash" draggable="true" ondragstart="drag(event)" data-type="comida" alt="Comida para Foca">
+            <img id="food1" src="images/pez.png" class="trash" draggable="true" ondragstart="drag(event)" data-type="comida" alt="Comida para Foca">
+            <img id="food1" src="images/pez.png" class="trash" draggable="true" ondragstart="drag(event)" data-type="comida" alt="Comida para Foca">
+            <img id="food1" src="images/pez.png" class="trash" draggable="true" ondragstart="drag(event)" data-type="comida" alt="Comida para Foca">
+            <img id="food1" src="images/pez.png" class="trash" draggable="true" ondragstart="drag(event)" data-type="comida" alt="Comida para Foca">
+            <img id="food1" src="images/pez.png" class="trash" draggable="true" ondragstart="drag(event)" data-type="comida" alt="Comida para Foca">
+
+        </div>
+    </div>
+
+    <div id="consejo"></div>
+
+    <script>
+        window.onload = function() {
+            var canvas = document.getElementById("gameCanvas");
+            var trashItems = document.querySelectorAll(".trash");
+
+            trashItems.forEach(function(item) {
+                var maxX = canvas.offsetWidth - item.offsetWidth;
+                var maxY = canvas.offsetHeight - item.offsetHeight;
+                item.style.left = Math.floor(Math.random() * maxX) + "px";
+                item.style.top = Math.floor(Math.random() * maxY) + "px";
+            });
+        };
+
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            var element = document.getElementById(data);
+            var foodType = element.getAttribute("data-type");
+
+            // Mostrar consejo si le das pescado
+            if (foodType === "comida") {
+                element.remove();
+                mostrarConsejo();
+            } else {
+                mostrarMensajeError();
+            }
+        }
+
+        function mostrarConsejo() {
+            const consejos = [
+                "Recuerda siempre clasificar tus residuos.",
+                "Reducir el uso de plástico ayuda a los océanos.",
+                "Las focas y otros animales marinos necesitan agua limpia para vivir."
+
+            ];
+            const consejo = consejos[Math.floor(Math.random() * consejos.length)];
+            document.getElementById("consejo").innerText = "Consejo de la Foca: " + consejo;
+        }
+
+        function mostrarMensajeError() {
+            document.getElementById("consejo").innerText = "¡Esa no es comida para la foca!";
+            
+        }
+        
+    </script>
+</body>
+</html>

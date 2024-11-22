@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="cssprueba.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Clasificación de Basura</title>
+    <style>
+
+body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #ffffffa9;
+                color: #333;
+            }
+            header {
+                background-color: #1fa515c3;
+                padding: 10px 0;
+                text-align: center;
+                color: #fff;
+            }
+            nav {
+                background-color: #267705;
+                color: #fff;
+                padding: 10px;
+                text-align: center;
+            }
+            nav a {
+                color: #fff;
+                text-decoration: none;
+                padding: 0 10px;
+            }
+            nav a:hover {
+                text-decoration: underline;
+            }
+            .content {
+                padding: 20px;
+            }
+            footer {
+                background-color: #333;
+                color: #fff;
+                text-align: center;
+                padding: 10px 0;
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+            }
+            .mySlides {
+                display: none;
+                text-align: center; /* Centrar el contenido */
+            }
+    
+            .mySlides img {
+                width: auto; /* Ancho máximo del contenedor */
+                height: auto; /* Altura ajustada automáticamente */
+                max-height: 300px; /* Altura máxima permitida */
+                display: inline-block; 
+            }
+    
+            .prev, .next {
+                cursor: pointer;
+                position: absolute;
+                top: 50%;
+                width: auto;
+                margin-top: -22px;
+                padding: 16px;
+                color: white;
+                font-weight: bold;
+                font-size: 18px;
+                transition: 0.6s ease;
+                border-radius: 0 3px 3px 0;
+                background-color: rgba(0, 0, 0, 0.5);
+            }
+    
+            .prev {
+                left: 0;
+            }
+    
+            .next {
+                right: 0;
+                border-radius: 3px 0 0 3px;
+            }
+    
+            /* Estilos para los puntos indicadores */
+            
+    
+            .active, .dot:hover {
+                background-color: #717171;
+            }
+
+        #gameCanvas {
+            width: 800px;
+            height: 600px;
+            position: relative;
+            border: 2px solid black;
+            margin: auto;
+            background-color: #79e0fc;
+        }
+
+        .bin {
+            width: 100px;
+            height: 150px;
+            position: absolute;
+        }
+        .bon{
+            position: center;
+        }
+
+        #organic {
+            top: 0;
+            left: 0;
+        }
+
+        #inorganic {
+            top: 0;
+            right: 0;
+        }
+
+        #recyclable {
+            bottom: 0;
+            left: 0;
+        }
+
+        #non-recyclable {
+            bottom: 0;
+            right: 0;
+        }
+
+        .trash {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+        }
+
+        /* Estilos para la imagen de retroalimentación */
+        #feedbackImage {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            display: none;
+            z-index: 10;
+        }
+        #foca {
+            width: 150px;
+            position: relative;
+            margin: auto;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Clasifica la basura correctamente</h1>
+        <p>¡Salva a la foca!</p>
+    </header>
+    <nav>
+        <a href="index.html">Página principal</a>
+        <a href="juego2.html">Alimenta a la foca</a>
+        <a href=""></a>
+        <a href=""></a>
+    </nav>
+
+    <h1></h1>
+    <div id="gameCanvas">
+        <div id="organic" class="bin" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <img src="images/organico.jpg" alt="Bote Orgánico">
+        </div>
+        <div id="inorganic" class="bin" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <img src="images/inorganico.jpg" alt="Bote Inorgánico">
+        </div>
+        <div id="recyclable" class="bin" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <img src="images/reciclable.png" alt="Bote Reciclable">
+        </div>
+        <div id="non-recyclable" class="bin" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <img src="images/noR.jpg" alt="Bote No Reciclable">
+        </div>
+        <div id="foca">
+            <img src="images/foca.png" alt="Foca">
+        </div>
+
+        <!-- Basura aleatoria-->
+        <div id="trashItems">
+            <img id="trash1" src="images/man.png" class="trash" draggable="true" ondragstart="drag(event)" data-type="organic" alt="Basura orgánica">
+            <img id="trash2" src="images/bolsa.png" class="trash" draggable="true" ondragstart="drag(event)" data-type="recyclable" alt="Basura reciclable">
+            <img id="trash3" src="images/lat.png" class="trash" draggable="true" ondragstart="drag(event)" data-type="inorganic" alt="Basura inorgánica">
+            <img id="trash4" src="images/pant.png" class="trash" draggable="true" ondragstart="drag(event)" data-type="non-recyclable" alt="Basura No Reciclable">
+            <img id="trash1" src="images/man.png" class="trash" draggable="true" ondragstart="drag(event)" data-type="organic" alt="Basura orgánica">
+            <img id="trash2" src="images/bolsa.png" class="trash" draggable="true" ondragstart="drag(event)" data-type="recyclable" alt="Basura reciclable">
+            <img id="trash3" src="images/lat.png" class="trash" draggable="true" ondragstart="drag(event)" data-type="inorganic" alt="Basura inorgánica">
+            <img id="trash4" src="images/pant.png" class="trash" draggable="true" ondragstart="drag(event)" data-type="non-recyclable" alt="Basura No Reciclable">
+            <img id="trash1" src="images/man.png" class="trash" draggable="true" ondragstart="drag(event)" data-type="organic" alt="Basura orgánica">
+            <img id="trash2" src="images/bolsa.png" class="trash" draggable="true" ondragstart="drag(event)" data-type="recyclable" alt="Basura reciclable">
+            <img id="trash3" src="images/lat.png" class="trash" draggable="true" ondragstart="drag(event)" data-type="inorganic" alt="Basura inorgánica">
+            <img id="trash4" src="images/pant.png" class="trash" draggable="true" ondragstart="drag(event)" data-type="non-recyclable" alt="Basura No Reciclable">
+        </div>
+
+        <!-- Imagen triste -->
+        <img id="feedbackImage" src="images/focaTriste.jpg" alt="images/focaTriste.jpg">
+
+    </div>
+
+    <script>
+        // Posicionar la basura dentro del canvas sin exceder los límites
+        window.onload = function() {
+            var canvas = document.getElementById("gameCanvas");
+            var trashItems = document.querySelectorAll(".trash");
+
+            trashItems.forEach(function(item) {
+                // Limitar las posiciones aleatorias dentro del tamaño del canvas
+                var maxX = canvas.offsetWidth - item.offsetWidth;
+                var maxY = canvas.offsetHeight - item.offsetHeight;
+
+                var randomX = Math.floor(Math.random() * maxX);
+                var randomY = Math.floor(Math.random() * maxY);
+
+                item.style.left = randomX + "px";
+                item.style.top = randomY + "px";
+            });
+        };
+
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            var element = document.getElementById(data);
+            var trashType = element.getAttribute("data-type");
+
+            var targetBin = ev.target.closest(".bin");
+            var binId = targetBin ? targetBin.id : ev.target.id;
+
+            var feedbackImage = document.getElementById("feedbackImage");
+
+            if ((binId === "organic" && trashType === "organic") ||
+                (binId === "inorganic" && trashType === "inorganic") ||
+                (binId === "recyclable" && trashType === "recyclable") ||
+                (binId === "non-recyclable" && trashType === "non-recyclable")) {
+
+                element.remove();
+                feedbackImage.src = "images/focaFeliz.png"; // Imagen cuando es correcto
+            } else {
+                feedbackImage.src = "images/focaTriste.jpg"; // Imagen cuando es incorrecto
+            }
+
+            // Mostrar la imagen triste
+            feedbackImage.style.display = "block";
+
+            // Ocultar la imagen después de 2 segundos
+            setTimeout(function() {
+                feedbackImage.style.display = "none";
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
