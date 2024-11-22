@@ -34,10 +34,10 @@ header {
 }
 section {
     border-radius: 5px;
-    border: solid 2px #4cff43;
+    border-top: solid 2px #4cff43;
     padding: 10px;
     margin-top: 10px;
-    box-shadow: 0 0 10px 5px #4cff437c;
+    background-image: linear-gradient(180deg, #22ff0052 0px, #22ff0042 25px, #22ff0000 15%);
     article {
         width: 100%;
         display: flex;
@@ -89,7 +89,6 @@ section {
         display: none;
         transition: all 0.4s ease-in-out 0s;
         z-index: 10;
-        display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
@@ -97,6 +96,7 @@ section {
     .title {
         font-size: 2.5em;
         background-image: linear-gradient(45deg, #22ff00, #5efff4);
+        text-shadow: 0 0 5px #4cff43;
         background-clip: text;
         -webkit-background-clip: text;
         color: transparent;
@@ -148,6 +148,13 @@ section {
     }
     .container {
         width: 90%;
+    }
+    .container .content-overlay {
+        opacity: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
     }
 }
 /*Arbrol--------------------------------------------- https://uiverse.io/NlghtM4re/jolly-newt-35*/
@@ -203,7 +210,6 @@ section {
 .tree div.stem span {
     position: absolute;
     top: 110px;
-    /* updated top value */
     left: calc(50% - 7.5px);
     width: 15px;
     height: 50%;
@@ -226,13 +232,9 @@ section {
 }
 /* From Uiverse.io by Smit-Prajapati */
 .button {
-    /* in scss with just one variable i can change opacity with rgba(variable, opacity) but in css it's not possible so i have used three seperate variables */
-    /* with hue-rotate color can be changed */
     --main-color: rgb(46, 213, 115);
     --main-bg-color: rgba(46, 213, 116, 0.36);
     --pattern-color: rgba(46, 213, 116, 0.073);
-
-    /* change this rotation value */
     filter: hue-rotate(0deg);
 
     cursor: pointer;
