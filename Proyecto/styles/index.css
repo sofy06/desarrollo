@@ -1,0 +1,260 @@
+html {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+        'Open Sans', 'Helvetica Neue', sans-serif;
+}
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #051400;
+    box-sizing: content-box;
+}
+main {
+    width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+header {
+    border-radius: 5px;
+    padding: 10px 0;
+    text-align: center;
+    h1 {
+        font-size: 5em;
+        background-image: linear-gradient(45deg, #22ff00, #5efff4);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+    p {
+        margin-top: 50px;
+        font-size: 1.5em;
+        color: #beff8d;
+        text-shadow: 0 0 5px #4cff43;
+    }
+}
+section {
+    border-radius: 5px;
+    border: solid 2px #4cff43;
+    padding: 10px;
+    margin-top: 10px;
+    box-shadow: 0 0 10px 5px #4cff437c;
+    article {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+        p {
+            font-size: 1.5em;
+            color: #000;
+        }
+    }
+    h1 {
+        text-align: center;
+        font-size: 3em;
+        background-image: linear-gradient(45deg, #22ff00, #5efff4);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        text-shadow: 0 0 5px #4cff43;
+    }
+}
+.container {
+    background: transparent;
+    border: 2px solid #07ff07;
+    box-shadow: 2px 2px 15px #000000 inset;
+    text-align: center;
+    color: #e8e8e8;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Pacifico';
+    border-radius: 15px;
+    width: 350px;
+    height: 300px;
+    padding: 10px;
+    text-decoration: none;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    .content-overlay {
+        background: rgba(0, 0, 0, 0.7);
+        position: absolute;
+        border-radius: 15px;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        top: 0px;
+        left: 0px;
+        display: none;
+        transition: all 0.4s ease-in-out 0s;
+        z-index: 10;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .title {
+        font-size: 2.5em;
+        background-image: linear-gradient(45deg, #22ff00, #5efff4);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+    .content-image {
+        border-radius: 15px;
+    }
+    .content-details {
+        p {
+            font-size: 1em;
+            color: #fff;
+        }
+    }
+    img {
+        object-fit: cover;
+        filter: drop-shadow(0 0 5px #40ff40);
+        animation: img_foca 3s infinite;
+    }
+}
+@keyframes img_foca {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+.container:hover .content-overlay {
+    opacity: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.container:hover {
+    color: #07ff07;
+    box-shadow: 2px 2px 15px #07ff07 inset;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    main {
+        width: 100%;
+    }
+    .container {
+        width: 90%;
+    }
+}
+/*Arbrol--------------------------------------------- https://uiverse.io/NlghtM4re/jolly-newt-35*/
+.Arbol {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.tree {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    transform-style: preserve-3d;
+    transform: rotateX(-20deg) rotateY(30deg);
+    animation: treeAnimate 5s linear infinite;
+}
+
+@keyframes treeAnimate {
+    0% {
+        transform: rotateX(-20deg) rotateY(360deg);
+    }
+
+    100% {
+        transform: rotateX(-20deg) rotateY(0deg);
+    }
+}
+
+.tree div {
+    position: absolute;
+    top: -50px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transform: translateY(calc(25px * var(--x))) translateZ(0px);
+}
+
+.tree div.branch span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #69c069, #77dd77);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    border-bottom: 5px solid #00000019;
+    transform-origin: bottom;
+    transform: rotateY(calc(90deg * var(--i))) rotateX(30deg) translateZ(28.5px);
+}
+
+.tree div.stem span {
+    position: absolute;
+    top: 110px;
+    /* updated top value */
+    left: calc(50% - 7.5px);
+    width: 15px;
+    height: 50%;
+    background: linear-gradient(90deg, #bb4622, #df7214);
+    border-bottom: 5px solid #00000019;
+    transform-origin: bottom;
+    transform: rotateY(calc(90deg * var(--i))) translateZ(7.5px);
+}
+
+.shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(51, 255, 0, 0.4);
+    filter: blur(20px);
+    transform-style: preserve-3d;
+    transform: rotateX(90deg) translateZ(-65px);
+}
+/* From Uiverse.io by Smit-Prajapati */
+.button {
+    /* in scss with just one variable i can change opacity with rgba(variable, opacity) but in css it's not possible so i have used three seperate variables */
+    /* with hue-rotate color can be changed */
+    --main-color: rgb(46, 213, 115);
+    --main-bg-color: rgba(46, 213, 116, 0.36);
+    --pattern-color: rgba(46, 213, 116, 0.073);
+
+    /* change this rotation value */
+    filter: hue-rotate(0deg);
+
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5rem;
+    background: radial-gradient(circle, var(--main-bg-color) 0%, rgba(0, 0, 0, 0) 95%),
+        linear-gradient(var(--pattern-color) 1px, transparent 1px),
+        linear-gradient(to right, var(--pattern-color) 1px, transparent 1px);
+    background-size: cover, 15px 15px, 15px 15px;
+    background-position: center center, center center, center center;
+    border-image: radial-gradient(circle, var(--main-color) 0%, rgba(0, 0, 0, 0) 100%) 1;
+    border-width: 1px 0 1px 0;
+    color: var(--main-color);
+    padding: 1rem 3rem;
+    font-weight: 700;
+    font-size: 1.5rem;
+    transition: background-size 0.2s ease-in-out;
+}
+
+.button:hover {
+    background-size: cover, 10px 10px, 10px 10px;
+}
+.button:active {
+    filter: hue-rotate(250deg);
+}
