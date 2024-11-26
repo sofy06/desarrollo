@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="../styles/game1.css" />
+        <link rel="stylesheet" href="../styles/index.css" />
+        <title>Clasifica la basura</title>
+    </head>
+    <body>
+        <main>
+            <header>
+                <h1>Clasifica la basura</h1>
+                <p>Ayuda a clasificar la basura</p>
+            </header>
+            <div class="contenedor-juego">
+                <div id="elementos-basura">
+                    <div id="particles-js"></div>
+                </div>
+                <div id="contenedores">
+                    <div class="contenedor" data-tipo="reciclable">Reciclable</div>
+                    <div class="contenedor Organico" data-tipo="organico"></div>
+                    <div class="contenedor" data-tipo="general">General</div>
+                </div>
+
+                <div id="pantalla-victoria" style="display: none">
+                    <h1>¡GENIAL!</h1>
+                    <!-- <button onclick="reiniciarJuego()">Jugar de nuevo</button> -->
+                </div>
+            </div>
+        </main>
+        <script src="../js/juego1.js"></script>
+    </body>
+</html>
