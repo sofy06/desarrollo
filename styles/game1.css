@@ -1,138 +1,84 @@
-.mySlides {
-    display: none;
-    text-align: center;
-}
-
-.mySlides img {
-    width: auto;
-    height: auto;
-    max-height: 300px;
-    display: inline-block;
-}
-
-.prev,
-.next {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    width: auto;
-    margin-top: -22px;
-    padding: 16px;
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    transition: 0.6s ease;
-    border-radius: 0 3px 3px 0;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.prev {
-    left: 0;
-}
-
-.next {
-    right: 0;
-    border-radius: 3px 0 0 3px;
-}
-
-.active,
-.dot:hover {
-    background-color: #717171;
-}
-
-#gameCanvas {
+.contenedor-juego {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 50px;
+    border: 2px solid #4cff43;
     position: relative;
-    width: 800px;
-    height: 500px;
-    margin: auto;
-    background-color: #79e0fc;
-    border-radius: 10px;
-    overflow: hidden; /* Para que las olas no se salgan del canvas */
-    box-shadow: 0 0 10px 5px rgba(34, 255, 0, 0.5);
+    padding: 10px;
 }
-
-.bin > img {
-    width: 100px;
-    height: 100px;
-}
-.trash {
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    cursor: help;
-}
-
-#feedbackImage {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 200px;
-    height: 200px;
+.oculto {
     display: none;
-    z-index: 10;
 }
-.Content_trash {
+#elementos-basura {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    width: 100%;
+    margin: auto;
+    height: 300px;
+    background-image: linear-gradient(45deg, #001eff, #5efff4);
+}
+.elemento-basura {
+    width: 20px;
+    height: 20px;
+    margin: 10px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    cursor: grab;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        object-fit: cover;
+    }
+}
+#contenedores {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+}
+.contenedor {
+    margin: 10px;
+    padding: 20px;
+    width: calc(100% / 3);
+    text-align: center;
+    width: 50px;
+    height: 70px;
+    img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        pointer-events: none;
+    }
+}
+.Organico {
+    background-image: url(../images/Organico.png);
+    background-size: cover;
+}
+#pantalla-victoria {
     position: absolute;
     width: 100%;
-    top: 73%;
-    z-index: 10;
-    display: flex;
-    justify-content: space-between;
-    div {
-        display: flex;
-    }
-}
-
-.wave {
-    position: absolute;
-    width: 1500px;
-    height: 1000px;
-    opacity: 0.6;
-    left: 50%;
     top: 0;
-    margin-left: -85%;
-    margin-top: -30%;
-    background: linear-gradient(744deg, #40e9ff, #2200ff86 60%, #00ddeb);
+    left: 0;
+    height: 100%;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #ffff;
+    background-color: #0000002b;
 }
-
-.wave:nth-child(2),
-.wave:nth-child(3) {
-    top: 210px;
-}
-
-.wave {
-    border-radius: 40%;
-    animation: wave 3ms infinite linear;
-}
-
-.wave {
-    border-radius: 40%;
-    animation: wave 5s infinite linear;
-}
-
-.wave:nth-child(2) {
-    animation-duration: 40ms;
-}
-
-.wave:nth-child(2) {
-    animation-duration: 5s;
-}
-
-.wave:nth-child(3) {
-    animation-duration: 50ms;
-}
-
-.wave:nth-child(3) {
-    animation-duration: 5s;
-}
-
-@keyframes wave {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
+#pantalla-victoria h1 {
+    font-size: 3em;
+    background-image: linear-gradient(45deg, #22ff00, #5efff4);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    margin: auto;
 }
